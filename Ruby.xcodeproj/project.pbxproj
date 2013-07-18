@@ -14,6 +14,7 @@
 		D4EF918A17974B5800ACB192 /* main.rb in Resources */ = {isa = PBXBuildFile; fileRef = D4EF918817974B5800ACB192 /* main.rb */; };
 		D4EF918C17974B7100ACB192 /* libruby.2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4EF918B17974B7100ACB192 /* libruby.2.0.0.dylib */; };
 		D4EF918D17974B9000ACB192 /* libruby.2.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4EF918B17974B7100ACB192 /* libruby.2.0.0.dylib */; };
+		D4EF918F17976ABA00ACB192 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4EF918E17976ABA00ACB192 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,12 +36,12 @@
 		D425BB5F1796CF4000540499 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D425BB601796CF4000540499 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D425BB611796CF4000540499 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D425BB641796CF4000540499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		D4EF91831797495A00ACB192 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = UniversalRuby/lib; sourceTree = SOURCE_ROOT; };
 		D4EF918517974AFC00ACB192 /* Ruby.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Ruby.icns; sourceTree = SOURCE_ROOT; };
 		D4EF918717974B5800ACB192 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
 		D4EF918817974B5800ACB192 /* main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = main.rb; sourceTree = SOURCE_ROOT; };
 		D4EF918B17974B7100ACB192 /* libruby.2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libruby.2.0.0.dylib; path = UniversalRuby/libruby.2.0.0.dylib; sourceTree = SOURCE_ROOT; };
+		D4EF918E17976ABA00ACB192 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +96,7 @@
 		D425BB621796CF4000540499 /* Ruby */ = {
 			isa = PBXGroup;
 			children = (
-				D425BB641796CF4000540499 /* Info.plist */,
+				D4EF918E17976ABA00ACB192 /* Info.plist */,
 				D4EF91831797495A00ACB192 /* lib */,
 				D4EF918B17974B7100ACB192 /* libruby.2.0.0.dylib */,
 				D4EF918717974B5800ACB192 /* main.m */,
@@ -160,6 +161,7 @@
 				D4EF91841797495A00ACB192 /* lib in Resources */,
 				D4EF918617974AFC00ACB192 /* Ruby.icns in Resources */,
 				D4EF918A17974B5800ACB192 /* main.rb in Resources */,
+				D4EF918F17976ABA00ACB192 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
