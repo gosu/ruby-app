@@ -14,7 +14,6 @@
 		D4EF918A17974B5800ACB192 /* main.rb in Resources */ = {isa = PBXBuildFile; fileRef = D4EF918817974B5800ACB192 /* main.rb */; };
 		D4EF918C17974B7100ACB192 /* libruby.2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4EF918B17974B7100ACB192 /* libruby.2.0.0.dylib */; };
 		D4EF918D17974B9000ACB192 /* libruby.2.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4EF918B17974B7100ACB192 /* libruby.2.0.0.dylib */; };
-		D4EF918F17976ABA00ACB192 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4EF918E17976ABA00ACB192 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -138,7 +137,6 @@
 			};
 			buildConfigurationList = D425BB541796CF4000540499 /* Build configuration list for PBXProject "Ruby" */;
 			compatibilityVersion = "Xcode 3.1";
-			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -161,7 +159,6 @@
 				D4EF91841797495A00ACB192 /* lib in Resources */,
 				D4EF918617974AFC00ACB192 /* Ruby.icns in Resources */,
 				D4EF918A17974B5800ACB192 /* main.rb in Resources */,
-				D4EF918F17976ABA00ACB192 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +200,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
@@ -223,7 +220,7 @@
 					UniversalRuby/include/x86_64,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};
