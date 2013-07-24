@@ -59,7 +59,7 @@
 		D425BB501796CF4000540499 = {
 			isa = PBXGroup;
 			children = (
-				D425BB621796CF4000540499 /* Ruby */,
+				D425BB621796CF4000540499 /* ruby_app */,
 				D425BB5B1796CF4000540499 /* Frameworks */,
 				D425BB5A1796CF4000540499 /* Products */,
 			);
@@ -92,7 +92,7 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		D425BB621796CF4000540499 /* Ruby */ = {
+		D425BB621796CF4000540499 /* ruby_app */ = {
 			isa = PBXGroup;
 			children = (
 				D4EF918E17976ABA00ACB192 /* Info.plist */,
@@ -102,7 +102,7 @@
 				D4EF918817974B5800ACB192 /* main.rb */,
 				D4EF918517974AFC00ACB192 /* Ruby.icns */,
 			);
-			path = Ruby;
+			name = ruby_app;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,7 +196,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					UniversalRuby/include,
-					UniversalRuby/include/x86_64,
+					"UniversalRuby/include/$(arch)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
@@ -217,7 +217,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				HEADER_SEARCH_PATHS = (
 					UniversalRuby/include,
-					UniversalRuby/include/x86_64,
+					"UniversalRuby/include/$(arch)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				SDKROOT = macosx10.5;
