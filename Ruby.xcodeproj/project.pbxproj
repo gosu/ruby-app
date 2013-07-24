@@ -213,7 +213,7 @@
 					i386,
 					ppc,
 				);
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				HEADER_SEARCH_PATHS = (
 					UniversalRuby/include,

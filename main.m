@@ -1,3 +1,6 @@
+// Avoid inclusion of <CarbonCore/AIFF.h> which typedef's ID to a different size than ruby.h
+#define __AIFF__
+
 #include <Foundation/Foundation.h>
 #include <unistd.h>
 #include "ruby.h"
