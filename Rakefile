@@ -1,6 +1,5 @@
-RVM_RUBY         = "ruby-2.0.0-p247"
-# Separate constant because Ruby 1.9.2 still had a 'libruby.1.9.1.dylib'
-INTERNAL_VERSION = "2.0.0"
+RVM_RUBY         = "ruby-2.1.2"
+INTERNAL_VERSION = "2.1.0"
 RUBY_DYLIB       = "libruby.#{INTERNAL_VERSION}.dylib"
 RUBY_DYLIB_ID    = "@executable_path/../Frameworks/#{RUBY_DYLIB}"
 TARGET_ROOT      = "UniversalRuby"
@@ -8,16 +7,10 @@ SOURCE_ROOT      = "#{ENV['HOME']}/.rvm/rubies/#{RVM_RUBY}"
 GEM_ROOT         = "#{ENV['HOME']}/.rvm/gems/#{RVM_RUBY}/gems"
 ALL_PLATFORMS    = [:ppc, :i386, :x86_64]
 LIB_KILLLIST     = %w(README irb rake* rdoc* *ubygems* readline* tcltk* tk* tcltklib* rss* *-darwin*)
-GEMS             = %w(gosu texplay chipmunk ruby-opengl2)
+GEMS             = %w(gosu\ --pre texplay chipmunk opengl ashton)
 
-# TODO - still necessary?
-CFLAGS           = {
-  :ppc    => "''",
-  :i386   => "''",
-  :x86_64 => "'-include #{File.expand_path(TARGET_ROOT)}/define_environ.h'"
-}
 # TODO - why not use the default?
-BUILD            = {
+BUILD = {
   :ppc    => %(powerpc-apple-darwin9.0),
   :i386   => %(i686-apple-darwin9.0),
   :x86_64 => %(x86_64-apple-darwin10.0),
@@ -39,7 +32,7 @@ ALL_PLATFORMS.each do |platform|
     
     # Let RVM install the correct Ruby
     sh "env RVM_RUBY=#{RVM_RUBY} RVM_ARCH=#{platform} " +
-       "    RVM_BUILD=#{BUILD[platform]} RVM_CFLAGS=#{CFLAGS[platform]} " +
+       "    RVM_BUILD=#{BUILD[platform]} " +
        "    RVM_GEMS='#{GEMS.join(' ')}' " +
        "    bash #{TARGET_ROOT}/install_rvm_ruby.sh"
     
@@ -71,6 +64,7 @@ ALL_PLATFORMS.each do |platform|
     
     # Merge gems
     GEMS.each do |gem_name|
+      gem_name = gem_name.split(" ").first
       gem_lib = Dir["#{GEM_ROOT}/#{gem_name}-*/lib"].first
       Dir["#{gem_lib}/**/*.rb"].each do |ruby_file|
         target_file = ruby_file.dup
