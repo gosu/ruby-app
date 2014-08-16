@@ -7,7 +7,7 @@ SOURCE_ROOT      = "#{ENV['HOME']}/.rvm/rubies/#{RVM_RUBY}"
 GEM_ROOT         = "#{ENV['HOME']}/.rvm/gems/#{RVM_RUBY}/gems"
 ALL_PLATFORMS    = [:ppc, :i386, :x86_64]
 LIB_KILLLIST     = %w(README irb rake* rdoc* *ubygems* readline* tcltk* tk* tcltklib* rss* *-darwin*)
-GEMS             = %w(gosu\ --pre texplay chipmunk opengl ashton)
+GEMS             = %w(gosu texplay\ --pre chipmunk opengl ashton)
 
 # TODO - why not use the default?
 BUILD = {
