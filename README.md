@@ -20,7 +20,7 @@ The first version of `Ruby.app` simply ran the user-supplied `main.rb` file usin
 
 # Build process
 
-tl;dr after many long nights: I have given up on cross-compiling Ruby and its quirky C extensions, even between 32/64-bit Intel. Instead, I compile Ruby on two or three different Macs and merge the results with `lipo`.
+tl;dr after many long nights: I have given up on cross-compiling Ruby and its quirky C extensions, even between 32/64-bit Intel. Instead, I compile Ruby on two or three different Macs and merge the results with `lipo`. Note: Since binaries compiled on one version of OS X are not guaranteed to work on older releases, I recommend using the oldest version of OS X you can find to build the Ruby app. Ideally: 10.6 on a 64-bit Mac for the 64-bit build; 10.6 on a 32-bit Mac for the 32-bit build; and any PowerPC Mac on 10.5 for the PowerPC build.
 
 * Install rvm.
 * Optional: Update the Rakefile with the desired Ruby version and gems.
