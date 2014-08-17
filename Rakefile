@@ -62,7 +62,7 @@ task :merge_current_platform_into_universal_ruby => :rebuild_ruby_for_current_pl
   GEMS.each do |gem_name|
     gem_name = gem_name.split(" ").first # strip --pre flag
     gem_lib = Dir["#{GEM_ROOT}/#{gem_name}-*/lib"].first
-    Dir["#{gem_lib}/**/*.rb"].each do |ruby_file|
+    Dir["#{gem_lib}/**/*.{rb,frag}"].each do |ruby_file|
       target_file = ruby_file.dup
       target_file[gem_lib] = "#{TARGET_ROOT}/lib"
       mkdir_p File.dirname(target_file)
