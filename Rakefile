@@ -7,9 +7,11 @@ SOURCE_ROOT      = "#{ENV['HOME']}/.rvm/rubies/#{RVM_RUBY}"
 GEM_ROOT         = "#{ENV['HOME']}/.rvm/gems/#{RVM_RUBY}/gems"
 ALL_PLATFORMS    = [:ppc, :i386, :x86_64]
 LIB_KILLLIST     = %w(README irb rake* rdoc* *ubygems* readline* tcltk* tk* tcltklib* rss* *-darwin*)
+# TODO: This installs the --pre version of Gosu as well, since --pre applies to all gems :(
+# The best way to fix this would be to work with @Spooner/@shawn42 to release the Texplay 0.4.4 gem
 GEMS             = %w(gosu texplay\ --pre chipmunk opengl ashton)
 
-CURRENT_PLATFORM = `arch`
+CURRENT_PLATFORM = `uname -m`.chomp
 
 def merge_lib source_file, target_file
   sh "install_name_tool -change #{SOURCE_ROOT}/lib/#{RUBY_DYLIB} #{RUBY_DYLIB_ID} #{source_file}"
