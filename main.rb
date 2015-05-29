@@ -1,12 +1,11 @@
-require 'rubygems'
 require 'gosu'
 
 class Window < Gosu::Window
   def initialize
-    super 800, 600, false
+    super 800, 600
 
-    self.caption = "Your Ruby game/app goes here"
-    @image = Gosu::Image.new(self, "Ruby.icns", false)
+    self.caption = "Your Ruby/Gosu game goes here"
+    @image = Gosu::Image.new("Ruby.icns")
   end
 
   def draw
