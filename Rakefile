@@ -1,15 +1,15 @@
-RVM_RUBY         = "ruby-2.1.2"
-INTERNAL_VERSION = "2.1.0"
+RVM_RUBY         = "ruby-2.2.1"
+INTERNAL_VERSION = "2.2.0"
 RUBY_DYLIB       = "libruby.#{INTERNAL_VERSION}.dylib"
 RUBY_DYLIB_ID    = "@executable_path/../Frameworks/#{RUBY_DYLIB}"
 TARGET_ROOT      = "UniversalRuby"
 SOURCE_ROOT      = "#{ENV['HOME']}/.rvm/rubies/#{RVM_RUBY}"
 GEM_ROOT         = "#{ENV['HOME']}/.rvm/gems/#{RVM_RUBY}/gems"
-ALL_PLATFORMS    = [:ppc, :i386, :x86_64]
 LIB_KILLLIST     = %w(README irb rake* rdoc* *ubygems* readline* tcltk* tk* tcltklib* rss* *-darwin*)
 # TODO: This installs the --pre version of Gosu as well, since --pre applies to all gems :(
 # The best way to fix this would be to work with @Spooner/@shawn42 to release the Texplay 0.4.4 gem
-GEMS             = %w(gosu texplay\ --pre chipmunk opengl ashton)
+GEMS             = %w(gosu texplay chipmunk opengl ashton msgpack)
+GEMS_WITH_FLAGS  = "#{GEMS.join(' ')} --pre -- --enable-static-homebrew-dependencies"
 
 CURRENT_PLATFORM = `uname -m`.chomp
 
@@ -27,7 +27,7 @@ task :rebuild_ruby_for_current_platform do
   mkdir_p "#{TARGET_ROOT}/lib"
   
   # Let RVM install the correct Ruby
-  sh "env RVM_RUBY=#{RVM_RUBY} RVM_GEMS='#{GEMS.join(' ')}' " +
+  sh "env RVM_RUBY=#{RVM_RUBY} RVM_GEMS='#{GEMS_WITH_FLAGS}' " +
      "    bash #{TARGET_ROOT}/install_rvm_ruby.sh"
 end
 

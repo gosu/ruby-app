@@ -5,4 +5,4 @@ source "$HOME/.rvm/scripts/rvm"
 export CFLAGS=$RVM_CFLAGS
 rvm install $RVM_RUBY -C --enable-shared
 rvm use $RVM_RUBY
-gem install $RVM_GEMS
+gem install --no-ri --no-rdoc $RVM_GEMS

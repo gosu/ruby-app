@@ -1,30 +1,31 @@
 
 # This file was edited by hand to remove all references to my home directory etc.
-# See https://github.com/jlnr/ruby_app to understand what's going on here. -jlnr
+# See https://github.com/gosu/ruby-app to understand what's going on here. -jlnr
 
 # This file was created by mkconfig.rb when ruby was built.  Any
 # changes made to this file will be lost the next time ruby is built.
 
 module RbConfig
-  RUBY_VERSION == "2.1.2" or
-    raise "ruby lib version (2.1.2) doesn't match executable version (#{RUBY_VERSION})"
+  RUBY_VERSION.start_with?("2.2.1"[/^[0-9]+[.][0-9]+[.]/]) or
+    raise "ruby lib version (2.2.1) doesn't match executable version (#{RUBY_VERSION})"
 
   TOPDIR = File.dirname(__FILE__).chomp!("/lib")
   DESTDIR = '' unless defined? DESTDIR
   CONFIG = {}
   CONFIG["DESTDIR"] = DESTDIR
   CONFIG["MAJOR"] = "2"
-  CONFIG["MINOR"] = "1"
+  CONFIG["MINOR"] = "2"
   CONFIG["TEENY"] = "0"
-  CONFIG["PATCHLEVEL"] = "95"
+  CONFIG["PATCHLEVEL"] = "85"
   CONFIG["INSTALL"] = '/usr/bin/install -c'
   CONFIG["EXEEXT"] = ""
   CONFIG["prefix"] = TOPDIR
-  CONFIG["ruby_install_name"] = "ruby"
-  CONFIG["RUBY_INSTALL_NAME"] = "ruby"
-  CONFIG["RUBY_SO_NAME"] = "ruby.2.1.0"
+  CONFIG["ruby_install_name"] = "$(RUBY_BASE_NAME)"
+  CONFIG["RUBY_INSTALL_NAME"] = "$(RUBY_BASE_NAME)"
+  CONFIG["RUBY_SO_NAME"] = "$(RUBY_BASE_NAME).$(MAJOR).$(MINOR).$(TEENY)"
+  CONFIG["DESTDIR"] = ""
   CONFIG["exec"] = "exec"
-  CONFIG["ruby_pc"] = "ruby-2.1.pc"
+  CONFIG["ruby_pc"] = "ruby-2.2.pc"
   CONFIG["PACKAGE"] = "ruby"
   CONFIG["BUILTIN_TRANSSRCS"] = " newline.c"
   CONFIG["USE_RUBYGEMS"] = "YES"
@@ -39,7 +40,7 @@ module RbConfig
   CONFIG["RUBY_SEARCH_PATH"] = ""
   CONFIG["UNIVERSAL_INTS"] = ""
   CONFIG["UNIVERSAL_ARCHNAMES"] = ""
-  CONFIG["configure_args"] = "'--with-opt-dir=/usr/local/opt/libyaml:/usr/local/opt/readline:/usr/local/opt/libksba:/usr/local/opt/openssl' '--disable-install-doc' '--enable-shared' 'CC=gcc' 'CFLAGS='"
+  CONFIG["configure_args"] = "'--with-opt-dir=/usr/local/opt/libyaml:/usr/local/opt/readline:/usr/local/opt/libksba:/usr/local/opt/openssl' '--disable-install-doc' '--enable-shared' 'CC=/usr/bin/clang' 'CFLAGS='"
   CONFIG["vendorarchdir"] = "$(vendorlibdir)/$(sitearch)"
   CONFIG["vendorlibdir"] = "$(vendordir)/$(ruby_version)"
   CONFIG["vendordir"] = "$(rubylibprefix)/vendor_ruby"
@@ -48,7 +49,7 @@ module RbConfig
   CONFIG["sitedir"] = "$(rubylibprefix)/site_ruby"
   CONFIG["rubyarchdir"] = "$(rubylibdir)/$(arch)"
   CONFIG["rubylibdir"] = "$(rubylibprefix)/$(ruby_version)"
-  CONFIG["ruby_version"] = "2.1.0"
+  CONFIG["ruby_version"] = "2.2.0"
   CONFIG["sitearch"] = "$(arch)"
   CONFIG["arch"] = "universal-darwin10.0"
   CONFIG["sitearchincludedir"] = "$(includedir)/$(sitearch)"
@@ -63,7 +64,6 @@ module RbConfig
   CONFIG["ridir"] = "$(datarootdir)/$(RI_BASE_NAME)"
   CONFIG["rubysitearchprefix"] = "$(rubylibprefix)/$(sitearch)"
   CONFIG["rubyarchprefix"] = "$(rubylibprefix)/$(arch)"
-  CONFIG["rubylibprefix"] = "$(libdir)/$(RUBY_BASE_NAME)"
   CONFIG["MAKEFILES"] = "Makefile GNUmakefile"
   CONFIG["PLATFORM_DIR"] = ""
   CONFIG["THREAD_MODEL"] = "pthread"
@@ -85,12 +85,10 @@ module RbConfig
   CONFIG["LIBRUBY_A"] = "lib$(RUBY_SO_NAME)-static.a"
   CONFIG["RUBYW_INSTALL_NAME"] = ""
   CONFIG["rubyw_install_name"] = ""
-  CONFIG["LIBRUBY_DLDFLAGS"] = "-Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib  -install_name $(libdir)/$(LIBRUBY_SO) -current_version $(MAJOR).$(MINOR).$(TEENY) -compatibility_version $(ruby_version)  $(XLDFLAGS)"
-  CONFIG["LIBRUBY_LDSHARED"] = "$(CC) -dynamiclib"
   CONFIG["EXTDLDFLAGS"] = ""
   CONFIG["EXTLDFLAGS"] = ""
   CONFIG["strict_warnflags"] = ""
-  CONFIG["warnflags"] = "-Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration -Wdivision-by-zero -Wextra-tokens"
+  CONFIG["warnflags"] = "-Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration -Wdivision-by-zero -Wdeprecated-declarations -Wextra-tokens"
   CONFIG["debugflags"] = "-ggdb3"
   CONFIG["optflags"] = "-O3 -fno-fast-math"
   CONFIG["cxxflags"] = " $(optflags) $(debugflags) $(warnflags)"
@@ -101,7 +99,7 @@ module RbConfig
   CONFIG["INSTALLDOC"] = "nodoc"
   CONFIG["CAPITARGET"] = "nodoc"
   CONFIG["RDOCTARGET"] = "nodoc"
-  CONFIG["DTRACE_GLOMMED_OBJ"] = ""
+  CONFIG["DTRACE_REBUILD"] = ""
   CONFIG["DTRACE_OBJ"] = ""
   CONFIG["DTRACE_EXT"] = "d"
   CONFIG["EXECUTABLE_EXTS"] = ""
@@ -115,6 +113,7 @@ module RbConfig
   CONFIG["TEST_RUNNABLE"] = "yes"
   CONFIG["rubylibprefix"] = "$(libdir)/$(RUBY_BASE_NAME)"
   CONFIG["setup"] = "Setup"
+  CONFIG["ENCSTATIC"] = ""
   CONFIG["EXTSTATIC"] = ""
   CONFIG["STRIP"] = "strip -A -n"
   CONFIG["TRY_LINK"] = ""
@@ -122,6 +121,7 @@ module RbConfig
   CONFIG["RPATHFLAG"] = ""
   CONFIG["LIBPATHFLAG"] = " -L%s"
   CONFIG["LINK_SO"] = "\n$(POSTLINK)"
+  CONFIG["ASMEXT"] = "S"
   CONFIG["LIBEXT"] = "a"
   CONFIG["DLEXT2"] = ""
   CONFIG["DLEXT"] = "bundle"
@@ -129,7 +129,7 @@ module RbConfig
   CONFIG["LDSHARED"] = "$(CC) -dynamic -bundle"
   CONFIG["CCDLFLAGS"] = "-fno-common"
   CONFIG["STATIC"] = ""
-  CONFIG["ARCH_FLAG"] = " -arch x86_64 -arch ppc -arch i386"
+  CONFIG["ARCH_FLAG"] = ""
   CONFIG["DLDFLAGS"] = "-Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib "
   CONFIG["ALLOCA"] = ""
   CONFIG["codesign"] = "codesign"
@@ -174,35 +174,36 @@ module RbConfig
   CONFIG["GREP"] = "/usr/bin/grep"
   CONFIG["CPP"] = "$(CC) -E"
   CONFIG["CXXFLAGS"] = "$(cxxflags)"
-  CONFIG["CXX"] = "g++"
   CONFIG["OBJEXT"] = "o"
   CONFIG["CPPFLAGS"] = " -I/usr/local/opt/libyaml/include -I/usr/local/opt/readline/include -I/usr/local/opt/libksba/include -I/usr/local/opt/openssl/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)"
   CONFIG["LDFLAGS"] = "-L. -fstack-protector -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib "
   CONFIG["CFLAGS"] = " -fno-common -pipe"
-  CONFIG["CC"] = "gcc"
+  CONFIG["CXX"] = "clang++"
+  CONFIG["CC"] = "/usr/bin/clang"
+  CONFIG["NACL_LIB_PATH"] = ""
   CONFIG["NACL_SDK_VARIANT"] = ""
   CONFIG["NACL_SDK_ROOT"] = ""
   CONFIG["NACL_TOOLCHAIN"] = ""
-  CONFIG["target_os"] = "darwin10.0"
+  CONFIG["target_os"] = "darwin11.0"
   CONFIG["target_vendor"] = "apple"
   CONFIG["target_cpu"] = "x86_64"
-  CONFIG["target"] = "x86_64-apple-darwin10.0"
-  CONFIG["host_os"] = "darwin10.0"
+  CONFIG["target"] = "x86_64-apple-darwin11.0"
+  CONFIG["host_os"] = "darwin11.4.2"
   CONFIG["host_vendor"] = "apple"
   CONFIG["host_cpu"] = "x86_64"
-  CONFIG["host"] = "x86_64-apple-darwin10.0"
+  CONFIG["host"] = "x86_64-apple-darwin11.4.2"
   CONFIG["RUBY_VERSION_NAME"] = "$(RUBY_BASE_NAME)-$(ruby_version)"
   CONFIG["RUBYW_BASE_NAME"] = "rubyw"
   CONFIG["RUBY_BASE_NAME"] = "ruby"
-  CONFIG["build_os"] = "darwin10.0"
+  CONFIG["build_os"] = "darwin11.4.2"
   CONFIG["build_vendor"] = "apple"
   CONFIG["build_cpu"] = "x86_64"
-  CONFIG["build"] = "x86_64-apple-darwin10.0"
-  CONFIG["RUBY_RELEASE_DATE"] = "2014-05-08"
-  CONFIG["RUBY_PROGRAM_VERSION"] = "2.1.2"
+  CONFIG["build"] = "x86_64-apple-darwin11.4.2"
+  CONFIG["RUBY_PROGRAM_VERSION"] = "2.2.1"
+  CONFIG["HAVE_BASERUBY"] = "yes"
   CONFIG["target_alias"] = ""
   CONFIG["host_alias"] = ""
-  CONFIG["build_alias"] = "x86_64-apple-darwin10.0"
+  CONFIG["build_alias"] = ""
   CONFIG["LIBS"] = "-lpthread -ldl -lobjc"
   CONFIG["ECHO_T"] = ""
   CONFIG["ECHO_N"] = ""
@@ -270,5 +271,4 @@ module RbConfig
     )
   end
 end
-autoload :Config, "rbconfig/obsolete.rb" # compatibility for ruby-1.8.4 and older.
 CROSS_COMPILING = nil unless defined? CROSS_COMPILING
