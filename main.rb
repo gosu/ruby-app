@@ -5,11 +5,12 @@ class Window < Gosu::Window
     super 800, 600
 
     self.caption = "Your Ruby/Gosu game goes here"
-    @image = Gosu::Image.new("Ruby.icns")
+    @image = Gosu::Image.new("Ruby.png")
   end
 
   def draw
-    @image.draw_rot self.width / 2, self.height / 2, 0, Math.sin(Gosu::milliseconds / 500.0) * 5
+    angle = Math.sin(Gosu::milliseconds / 500.0) * 5
+    @image.draw_rot self.width / 2, self.height / 2, 0, angle
   end
 
   def update
