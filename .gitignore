@@ -1,5 +1,15 @@
+.DS_Store
+
+# Intermdiate files
 /UniversalRuby/include/
 /UniversalRuby/lib/
 /UniversalRuby/libruby.?.?.?.dylib
-/Ruby.app/
-/**/xcuserdata
+build
+/Ruby.app
+
+# Xcode 4+
+xcuserdata
+
+# Xcode 3
+*.mode1v3
+*.pbxuser
