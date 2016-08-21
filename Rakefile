@@ -1,5 +1,5 @@
-RVM_RUBY         = "ruby-2.2.1"
-INTERNAL_VERSION = "2.2.0"
+RVM_RUBY         = "ruby-2.3.1"
+INTERNAL_VERSION = "2.3.0"
 RUBY_DYLIB       = "libruby.#{INTERNAL_VERSION}.dylib"
 RUBY_DYLIB_ID    = "@executable_path/../Frameworks/#{RUBY_DYLIB}"
 TARGET_ROOT      = "UniversalRuby"

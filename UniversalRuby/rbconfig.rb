@@ -1,33 +1,31 @@
-
-# This file was edited by hand to remove all references to my home directory etc.
-# See https://github.com/gosu/ruby-app to understand what's going on here. -jlnr
-
-# This file was created by mkconfig.rb when ruby was built.  Any
-# changes made to this file will be lost the next time ruby is built.
+# frozen-string-literal: false
+# This file was created by mkconfig.rb when ruby was built.  It contains
+# build information for ruby which is used e.g. by mkmf to build
+# compatible native extensions.  Any changes made to this file will be
+# lost the next time ruby is built.
 
 module RbConfig
-  RUBY_VERSION.start_with?("2.2.1"[/^[0-9]+[.][0-9]+[.]/]) or
-    raise "ruby lib version (2.2.1) doesn't match executable version (#{RUBY_VERSION})"
+  RUBY_VERSION.start_with?("2.3.") or
+    raise "ruby lib version (2.3.1) doesn't match executable version (#{RUBY_VERSION})"
 
   TOPDIR = File.dirname(__FILE__).chomp!("/lib")
   DESTDIR = '' unless defined? DESTDIR
   CONFIG = {}
   CONFIG["DESTDIR"] = DESTDIR
   CONFIG["MAJOR"] = "2"
-  CONFIG["MINOR"] = "2"
+  CONFIG["MINOR"] = "3"
   CONFIG["TEENY"] = "0"
-  CONFIG["PATCHLEVEL"] = "85"
+  CONFIG["PATCHLEVEL"] = "112"
   CONFIG["INSTALL"] = '/usr/bin/install -c'
   CONFIG["EXEEXT"] = ""
   CONFIG["prefix"] = TOPDIR
   CONFIG["ruby_install_name"] = "$(RUBY_BASE_NAME)"
   CONFIG["RUBY_INSTALL_NAME"] = "$(RUBY_BASE_NAME)"
   CONFIG["RUBY_SO_NAME"] = "$(RUBY_BASE_NAME).$(MAJOR).$(MINOR).$(TEENY)"
-  CONFIG["DESTDIR"] = ""
   CONFIG["exec"] = "exec"
-  CONFIG["ruby_pc"] = "ruby-2.2.pc"
+  CONFIG["ruby_pc"] = "ruby-2.3.pc"
   CONFIG["PACKAGE"] = "ruby"
-  CONFIG["BUILTIN_TRANSSRCS"] = " newline.c"
+  CONFIG["BUILTIN_TRANSSRCS"] = " enc/trans/newline.c"
   CONFIG["USE_RUBYGEMS"] = "YES"
   CONFIG["MANTYPE"] = "doc"
   CONFIG["NROFF"] = "/usr/bin/nroff"
@@ -40,7 +38,8 @@ module RbConfig
   CONFIG["RUBY_SEARCH_PATH"] = ""
   CONFIG["UNIVERSAL_INTS"] = ""
   CONFIG["UNIVERSAL_ARCHNAMES"] = ""
-  CONFIG["configure_args"] = "'--with-opt-dir=/usr/local/opt/libyaml:/usr/local/opt/readline:/usr/local/opt/libksba:/usr/local/opt/openssl' '--disable-install-doc' '--enable-shared' 'CC=/usr/bin/clang' 'CFLAGS='"
+  CONFIG["configure_args"] = " '--with-opt-dir=/usr/local/opt/libyaml:/usr/local/opt/readline:/usr/local/opt/libksba:/usr/local/opt/openssl' '--disable-install-doc' '--enable-shared' 'CC=/usr/bin/clang' 'CFLAGS='"
+  CONFIG["CONFIGURE"] = "configure"
   CONFIG["vendorarchdir"] = "$(vendorlibdir)/$(sitearch)"
   CONFIG["vendorlibdir"] = "$(vendordir)/$(ruby_version)"
   CONFIG["vendordir"] = "$(rubylibprefix)/vendor_ruby"
@@ -49,9 +48,9 @@ module RbConfig
   CONFIG["sitedir"] = "$(rubylibprefix)/site_ruby"
   CONFIG["rubyarchdir"] = "$(rubylibdir)/$(arch)"
   CONFIG["rubylibdir"] = "$(rubylibprefix)/$(ruby_version)"
-  CONFIG["ruby_version"] = "2.2.0"
+  CONFIG["ruby_version"] = "2.3.0"
   CONFIG["sitearch"] = "$(arch)"
-  CONFIG["arch"] = "universal-darwin10.0"
+  CONFIG["arch"] = "x86_64-darwin11.0"
   CONFIG["sitearchincludedir"] = "$(includedir)/$(sitearch)"
   CONFIG["archincludedir"] = "$(includedir)/$(arch)"
   CONFIG["sitearchlibdir"] = "$(libdir)/$(sitearch)"
@@ -91,24 +90,13 @@ module RbConfig
   CONFIG["warnflags"] = "-Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration -Wdivision-by-zero -Wdeprecated-declarations -Wextra-tokens"
   CONFIG["debugflags"] = "-ggdb3"
   CONFIG["optflags"] = "-O3 -fno-fast-math"
-  CONFIG["cxxflags"] = " $(optflags) $(debugflags) $(warnflags)"
-  CONFIG["cflags"] = " $(optflags) $(debugflags) $(warnflags)"
-  CONFIG["cppflags"] = ""
   CONFIG["NULLCMD"] = ":"
   CONFIG["DLNOBJ"] = "dln.o"
-  CONFIG["INSTALLDOC"] = "nodoc"
-  CONFIG["CAPITARGET"] = "nodoc"
-  CONFIG["RDOCTARGET"] = "nodoc"
-  CONFIG["DTRACE_REBUILD"] = ""
-  CONFIG["DTRACE_OBJ"] = ""
-  CONFIG["DTRACE_EXT"] = "d"
   CONFIG["EXECUTABLE_EXTS"] = ""
   CONFIG["ARCHFILE"] = ""
   CONFIG["LIBRUBY_RELATIVE"] = "no"
   CONFIG["EXTOUT"] = ".ext"
-  CONFIG["RUNRUBY_COMMAND"] = "$(MINIRUBY) $(srcdir)/tool/runruby.rb --extout=$(EXTOUT) $(RUNRUBYOPT)"
   CONFIG["PREP"] = "miniruby$(EXEEXT)"
-  CONFIG["BTESTRUBY"] = "$(MINIRUBY)"
   CONFIG["CROSS_COMPILING"] = "no"
   CONFIG["TEST_RUNNABLE"] = "yes"
   CONFIG["rubylibprefix"] = "$(libdir)/$(RUBY_BASE_NAME)"
@@ -117,6 +105,7 @@ module RbConfig
   CONFIG["EXTSTATIC"] = ""
   CONFIG["STRIP"] = "strip -A -n"
   CONFIG["TRY_LINK"] = ""
+  CONFIG["PRELOADENV"] = "DYLD_INSERT_LIBRARIES"
   CONFIG["LIBPATHENV"] = "DYLD_LIBRARY_PATH"
   CONFIG["RPATHFLAG"] = ""
   CONFIG["LIBPATHFLAG"] = " -L%s"
@@ -130,7 +119,7 @@ module RbConfig
   CONFIG["CCDLFLAGS"] = "-fno-common"
   CONFIG["STATIC"] = ""
   CONFIG["ARCH_FLAG"] = ""
-  CONFIG["DLDFLAGS"] = "-Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib "
+  CONFIG["DLDFLAGS"] = "-Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib"
   CONFIG["ALLOCA"] = ""
   CONFIG["codesign"] = "codesign"
   CONFIG["POSTLINK"] = "test -z '$(RUBY_CODESIGN)' || codesign -s '$(RUBY_CODESIGN)' -f $@"
@@ -145,7 +134,6 @@ module RbConfig
   CONFIG["PYTHON"] = ""
   CONFIG["DOXYGEN"] = ""
   CONFIG["DOT"] = ""
-  CONFIG["DTRACE"] = "dtrace"
   CONFIG["MAKEDIRS"] = "mkdir -p"
   CONFIG["MKDIR_P"] = "mkdir -p"
   CONFIG["INSTALL_DATA"] = "$(INSTALL) -m 644"
@@ -176,7 +164,7 @@ module RbConfig
   CONFIG["CXXFLAGS"] = "$(cxxflags)"
   CONFIG["OBJEXT"] = "o"
   CONFIG["CPPFLAGS"] = " -I/usr/local/opt/libyaml/include -I/usr/local/opt/readline/include -I/usr/local/opt/libksba/include -I/usr/local/opt/openssl/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)"
-  CONFIG["LDFLAGS"] = "-L. -fstack-protector -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib "
+  CONFIG["LDFLAGS"] = "-L. -fstack-protector -L/usr/local/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib"
   CONFIG["CFLAGS"] = " -fno-common -pipe"
   CONFIG["CXX"] = "clang++"
   CONFIG["CC"] = "/usr/bin/clang"
@@ -199,8 +187,10 @@ module RbConfig
   CONFIG["build_vendor"] = "apple"
   CONFIG["build_cpu"] = "x86_64"
   CONFIG["build"] = "x86_64-apple-darwin11.4.2"
-  CONFIG["RUBY_PROGRAM_VERSION"] = "2.2.1"
-  CONFIG["HAVE_BASERUBY"] = "yes"
+  CONFIG["RUBY_PROGRAM_VERSION"] = "2.3.1"
+  CONFIG["cxxflags"] = " $(optflags) $(debugflags) $(warnflags)"
+  CONFIG["cppflags"] = ""
+  CONFIG["cflags"] = " $(optflags) $(debugflags) $(warnflags)"
   CONFIG["target_alias"] = ""
   CONFIG["host_alias"] = ""
   CONFIG["build_alias"] = ""
@@ -219,7 +209,7 @@ module RbConfig
   CONFIG["infodir"] = "$(datarootdir)/info"
   CONFIG["docdir"] = "$(datarootdir)/doc/$(PACKAGE)"
   CONFIG["oldincludedir"] = "/usr/include"
-  CONFIG["includedir"] = "$(prefix)/include"
+  CONFIG["includedir"] = "$(SDKROOT)""$(prefix)/include"
   CONFIG["localstatedir"] = "$(prefix)/var"
   CONFIG["sharedstatedir"] = "$(prefix)/com"
   CONFIG["sysconfdir"] = "$(prefix)/etc"
@@ -237,6 +227,7 @@ module RbConfig
   CONFIG["PACKAGE_NAME"] = ""
   CONFIG["PATH_SEPARATOR"] = ":"
   CONFIG["SHELL"] = "/bin/sh"
+  CONFIG["SDKROOT"] = ENV["SDKROOT"] || "" # don't run xcrun everytime, usually useless.
   CONFIG["archdir"] = "$(rubyarchdir)"
   CONFIG["topdir"] = File.dirname(__FILE__)
   MAKEFILE_CONFIG = {}
