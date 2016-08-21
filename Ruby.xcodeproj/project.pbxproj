@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D425BB5D1796CF4000540499 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D425BB5C1796CF4000540499 /* Cocoa.framework */; };
-		D47C107619A0AC2D004063F4 /* libruby.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D47C107519A0AC2D004063F4 /* libruby.2.2.0.dylib */; };
-		D47C10B019A0AF96004063F4 /* libruby.2.2.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D47C107519A0AC2D004063F4 /* libruby.2.2.0.dylib */; };
+		D49E57C61D69BD72001A2D1F /* libruby.2.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D49E57C51D69BD72001A2D1F /* libruby.2.3.0.dylib */; };
+		D49E57C71D69BDA7001A2D1F /* libruby.2.3.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D49E57C51D69BD72001A2D1F /* libruby.2.3.0.dylib */; };
+		D49E57C91D69BEF1001A2D1F /* Ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = D49E57C81D69BEF1001A2D1F /* Ruby.png */; };
 		D4EF91841797495A00ACB192 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = D4EF91831797495A00ACB192 /* lib */; };
 		D4EF918617974AFC00ACB192 /* Ruby.icns in Resources */ = {isa = PBXBuildFile; fileRef = D4EF918517974AFC00ACB192 /* Ruby.icns */; };
 		D4EF918917974B5800ACB192 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EF918717974B5800ACB192 /* main.m */; };
@@ -23,7 +24,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D47C10B019A0AF96004063F4 /* libruby.2.2.0.dylib in CopyFiles */,
+				D49E57C71D69BDA7001A2D1F /* libruby.2.3.0.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,7 +36,8 @@
 		D425BB5F1796CF4000540499 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D425BB601796CF4000540499 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D425BB611796CF4000540499 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D47C107519A0AC2D004063F4 /* libruby.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libruby.2.2.0.dylib; path = UniversalRuby/libruby.2.2.0.dylib; sourceTree = "<group>"; };
+		D49E57C51D69BD72001A2D1F /* libruby.2.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libruby.2.3.0.dylib; path = UniversalRuby/libruby.2.3.0.dylib; sourceTree = "<group>"; };
+		D49E57C81D69BEF1001A2D1F /* Ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ruby.png; sourceTree = "<group>"; };
 		D4EF91831797495A00ACB192 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = UniversalRuby/lib; sourceTree = SOURCE_ROOT; };
 		D4EF918517974AFC00ACB192 /* Ruby.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Ruby.icns; sourceTree = SOURCE_ROOT; };
 		D4EF918717974B5800ACB192 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
@@ -49,7 +51,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D425BB5D1796CF4000540499 /* Cocoa.framework in Frameworks */,
-				D47C107619A0AC2D004063F4 /* libruby.2.2.0.dylib in Frameworks */,
+				D49E57C61D69BD72001A2D1F /* libruby.2.3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,10 +99,11 @@
 			children = (
 				D4EF918E17976ABA00ACB192 /* Info.plist */,
 				D4EF91831797495A00ACB192 /* lib */,
-				D47C107519A0AC2D004063F4 /* libruby.2.2.0.dylib */,
+				D49E57C51D69BD72001A2D1F /* libruby.2.3.0.dylib */,
 				D4EF918717974B5800ACB192 /* main.m */,
 				D4EF918817974B5800ACB192 /* main.rb */,
 				D4EF918517974AFC00ACB192 /* Ruby.icns */,
+				D49E57C81D69BEF1001A2D1F /* Ruby.png */,
 			);
 			name = ruby_app;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 				D4EF91841797495A00ACB192 /* lib in Resources */,
 				D4EF918617974AFC00ACB192 /* Ruby.icns in Resources */,
 				D4EF918A17974B5800ACB192 /* main.rb in Resources */,
+				D49E57C91D69BEF1001A2D1F /* Ruby.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,62 +181,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		D425BB741796CF4100540499 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					x86_64,
-					i386,
-					ppc,
-				);
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (
-					UniversalRuby/include,
-					"UniversalRuby/include/$(arch)",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.5;
-			};
-			name = Debug;
-		};
 		D425BB751796CF4100540499 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COPY_PHASE_STRIP = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				HEADER_SEARCH_PATHS = (
 					UniversalRuby/include,
 					"UniversalRuby/include/$(arch)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				SDKROOT = macosx10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = "";
 			};
 			name = Release;
-		};
-		D425BB771796CF4100540499 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = .;
-				INFOPLIST_FILE = Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/UniversalRuby\"",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
 		};
 		D425BB781796CF4100540499 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -253,7 +214,6 @@
 		D425BB541796CF4000540499 /* Build configuration list for PBXProject "Ruby" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D425BB741796CF4100540499 /* Debug */,
 				D425BB751796CF4100540499 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -262,7 +222,6 @@
 		D425BB761796CF4100540499 /* Build configuration list for PBXNativeTarget "Ruby" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D425BB771796CF4100540499 /* Debug */,
 				D425BB781796CF4100540499 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
