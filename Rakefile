@@ -1,4 +1,4 @@
-RVM_RUBY         = "ruby-2.3.1"
+RVM_RUBY         = "ruby-2.3.8"
 INTERNAL_VERSION = "2.3.0"
 RUBY_DYLIB       = "libruby.#{INTERNAL_VERSION}.dylib"
 RUBY_DYLIB_ID    = "@executable_path/../Frameworks/#{RUBY_DYLIB}"
@@ -6,10 +6,8 @@ TARGET_ROOT      = "UniversalRuby"
 SOURCE_ROOT      = "#{ENV['HOME']}/.rvm/rubies/#{RVM_RUBY}"
 GEM_ROOT         = "#{ENV['HOME']}/.rvm/gems/#{RVM_RUBY}/gems"
 LIB_KILLLIST     = %w(README irb rake* rdoc* *ubygems* readline* tcltk* tk* tcltklib* rss* *-darwin*)
-# TODO: This installs the --pre version of Gosu as well, since --pre applies to all gems :(
-# The best way to fix this would be to work with @Spooner/@shawn42 to release the Texplay 0.4.4 gem
-GEMS             = %w(gosu texplay chipmunk opengl ashton msgpack)
-GEMS_WITH_FLAGS  = "#{GEMS.join(' ')} --pre -- --enable-static-homebrew-dependencies"
+GEMS             = %w(gosu opengl)
+GEMS_WITH_FLAGS  = "#{GEMS.join(' ')} -- --enable-static-homebrew-dependencies"
 
 CURRENT_PLATFORM = `uname -m`.chomp
 

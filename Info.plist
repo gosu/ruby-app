@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string>Ruby</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.example.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>${PRODUCT_BUNDLE_IDENTIFIER}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -27,7 +27,7 @@
 	<key>LSMinimumSystemVersionByArchitecture</key>
 	<dict>
 		<key>x86_64</key>
-		<string>10.7.0</string>
+		<string>10.14.0</string>
 	</dict>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>

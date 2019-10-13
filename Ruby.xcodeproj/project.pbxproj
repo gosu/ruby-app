@@ -143,7 +143,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				English,
 			);
 			mainGroup = D425BB501796CF4000540499;
 			productRefGroup = D425BB5A1796CF4000540499 /* Products */;
@@ -190,7 +190,7 @@
 					UniversalRuby/include,
 					"UniversalRuby/include/$(arch)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				SDKROOT = "";
 			};
 			name = Release;
@@ -198,12 +198,15 @@
 		D425BB781796CF4100540499 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				CONFIGURATION_BUILD_DIR = .;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/UniversalRuby\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.Ruby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
