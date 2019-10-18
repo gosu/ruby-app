@@ -7,7 +7,7 @@ SOURCE_ROOT      = "#{ENV['HOME']}/.rvm/rubies/#{RVM_RUBY}"
 GEM_ROOT         = "#{ENV['HOME']}/.rvm/gems/#{RVM_RUBY}/gems"
 LIB_KILLLIST     = %w(README irb rake* rdoc* *ubygems* readline* tcltk* tk* tcltklib* rss* *-darwin*)
 GEMS             = %w(gosu texplay chipmunk ashton opengl msgpack)
-GEMS_WITH_FLAGS  = "#{GEMS.join(' ')} --pre -- --enable-static-homebrew-dependencies"
+GEMS_WITH_FLAGS  = "#{GEMS.join(' ')} --pre"
 
 CURRENT_PLATFORM = `uname -m`.chomp
 
@@ -21,6 +21,10 @@ def merge_lib source_file, target_file
 end
 
 task :rebuild_ruby_for_current_platform do
+  if File.directory? '/usr/local/opt/gmp/lib'
+    raise "Please run `brew uninstall gmp --ignore-dependencies` to avoid it leaking into our portable Ruby."
+  end
+  
   mkdir_p "#{TARGET_ROOT}/include"
   mkdir_p "#{TARGET_ROOT}/lib"
   
