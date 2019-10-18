@@ -6,8 +6,8 @@ TARGET_ROOT      = "UniversalRuby"
 SOURCE_ROOT      = "#{ENV['HOME']}/.rvm/rubies/#{RVM_RUBY}"
 GEM_ROOT         = "#{ENV['HOME']}/.rvm/gems/#{RVM_RUBY}/gems"
 LIB_KILLLIST     = %w(README irb rake* rdoc* *ubygems* readline* tcltk* tk* tcltklib* rss* *-darwin*)
-GEMS             = %w(gosu opengl)
-GEMS_WITH_FLAGS  = "#{GEMS.join(' ')} -- --enable-static-homebrew-dependencies"
+GEMS             = %w(gosu texplay chipmunk ashton opengl msgpack)
+GEMS_WITH_FLAGS  = "#{GEMS.join(' ')} --pre -- --enable-static-homebrew-dependencies"
 
 CURRENT_PLATFORM = `uname -m`.chomp
 
@@ -59,7 +59,7 @@ task :merge_current_platform_into_universal_ruby => :rebuild_ruby_for_current_pl
   # Merge gems
   GEMS.each do |gem_name|
     gem_name = gem_name.split(" ").first # strip --pre flag
-    gem_lib = Dir["#{GEM_ROOT}/#{gem_name}-*/lib"].first
+    gem_lib = Dir["#{GEM_ROOT}/#{gem_name}-*/lib"].last
     Dir["#{gem_lib}/**/*.{rb,frag}"].each do |ruby_file|
       target_file = ruby_file.dup
       target_file[gem_lib] = "#{TARGET_ROOT}/lib"

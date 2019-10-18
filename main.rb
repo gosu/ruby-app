@@ -1,5 +1,9 @@
 require 'gosu'
 
+# Some available libraries...
+require 'chipmunk'
+require 'texplay'
+
 class Window < Gosu::Window
   def initialize
     super 800, 600
