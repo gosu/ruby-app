@@ -9,7 +9,3 @@ build
 
 # Xcode 4+
 xcuserdata
-
-# Xcode 3
-*.mode1v3
-*.pbxuser

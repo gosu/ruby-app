@@ -26,16 +26,17 @@ This is also what [Platypus](http://sveinbjorn.org/platypus) does. However,
 # Build process
 
 tl;dr after many long nights: I have given up on cross-compiling Ruby and its quirky C extensions.
-Instead, I compile Ruby on two or three different Macs and merge the results with `lipo`.
+Instead, I compile Ruby on two different Macs and merge the results with `lipo`.
 Note: Since binaries compiled on one version of macOS are not guaranteed to work on older releases, I recommend using the oldest version of macOS you can find to build the Ruby app.
 
 * Install rvm.
 * Optional: Update the Rakefile with the desired Ruby version and gems.
-* Run `rake` on a 64-bit Mac. This will install Ruby and all required gems via rvm, and then copy them into the `UniversalRuby` folder.
-* Transfer this folder to a 32-bit Mac. Run `rake` on this Mac as well. It will merge the 32-bit binaries into the `UniversalRuby` folder.
+* Run `rake` on an Intel Mac. This will install Ruby and all required gems via rvm, and then copy them into the `UniversalRuby` folder. Airdrop this folder to your ARM Mac.
+* Run `rake` on the ARM Mac. This will build and merge ARM binaries into the UniversalRuby folder.
 * Optional: If you have updated Ruby, be sure to manually update `rbconfig.rb` from your rvm-built Ruby (at least the version number should match).
 * You should now have a self-contained Ruby installation!
 
 # License
 
-Everything in this repository has been released under the MIT license. As for the Ruby installation that is contained in binary builds of the `Ruby.app`, please see the licenses for Ruby and its standard library.
+Everything in this repository has been released under the MIT license.
+As for the Ruby installation that is contained in binary builds of the `Ruby.app`, please see the licenses for Ruby and its standard library.

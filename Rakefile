@@ -1,6 +1,6 @@
-RVM_RUBY = "ruby-2.3.8"
-INTERNAL_VERSION = "2.3.0"
-RUBY_DYLIB = "libruby.#{INTERNAL_VERSION}.dylib"
+RVM_RUBY = "ruby-3.0.0"
+INTERNAL_VERSION = "3.0.0"
+RUBY_DYLIB = "libruby.3.0.dylib"
 RUBY_DYLIB_ID = "@executable_path/../Frameworks/#{RUBY_DYLIB}"
 TARGET_ROOT = "UniversalRuby"
 SOURCE_ROOT = "#{ENV["HOME"]}/.rvm/rubies/#{RVM_RUBY}"
@@ -21,10 +21,6 @@ def merge_lib(source_file, target_file)
 end
 
 task :rebuild_ruby_for_current_platform do
-  if File.directory? "/usr/local/opt/gmp/lib"
-    raise "Please run `brew uninstall gmp --ignore-dependencies` to avoid it leaking into our portable Ruby."
-  end
-
   mkdir_p "#{TARGET_ROOT}/include"
   mkdir_p "#{TARGET_ROOT}/lib"
 
@@ -44,7 +40,7 @@ task :merge_current_platform_into_universal_ruby => :rebuild_ruby_for_current_pl
   # Copy Ruby libraries
   sh "cp -R #{SOURCE_ROOT}/lib/ruby/#{INTERNAL_VERSION}/* #{TARGET_ROOT}/lib"
   # Merge libruby with existing platforms
-  # (TODO: This will bork the installation in rvm. Should avoid this by using a temporary file...)
+  # (This will bork the Ruby installation in rvm. No issue, we'll throw it away anyway.)
   source_file = "#{SOURCE_ROOT}/lib/#{RUBY_DYLIB}"
   target_file = "#{TARGET_ROOT}/#{RUBY_DYLIB}"
   sh "install_name_tool -id #{RUBY_DYLIB_ID} #{source_file}"

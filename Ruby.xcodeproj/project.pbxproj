@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D425BB5D1796CF4000540499 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D425BB5C1796CF4000540499 /* Cocoa.framework */; };
-		D49E57C61D69BD72001A2D1F /* libruby.2.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D49E57C51D69BD72001A2D1F /* libruby.2.3.0.dylib */; };
-		D49E57C71D69BDA7001A2D1F /* libruby.2.3.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D49E57C51D69BD72001A2D1F /* libruby.2.3.0.dylib */; };
+		D49E57C61D69BD72001A2D1F /* libruby.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D49E57C51D69BD72001A2D1F /* libruby.3.0.dylib */; };
+		D49E57C71D69BDA7001A2D1F /* libruby.3.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D49E57C51D69BD72001A2D1F /* libruby.3.0.dylib */; };
 		D49E57C91D69BEF1001A2D1F /* Ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = D49E57C81D69BEF1001A2D1F /* Ruby.png */; };
 		D4EF91841797495A00ACB192 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = D4EF91831797495A00ACB192 /* lib */; };
 		D4EF918617974AFC00ACB192 /* Ruby.icns in Resources */ = {isa = PBXBuildFile; fileRef = D4EF918517974AFC00ACB192 /* Ruby.icns */; };
@@ -24,7 +24,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D49E57C71D69BDA7001A2D1F /* libruby.2.3.0.dylib in CopyFiles */,
+				D49E57C71D69BDA7001A2D1F /* libruby.3.0.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,7 +36,7 @@
 		D425BB5F1796CF4000540499 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D425BB601796CF4000540499 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D425BB611796CF4000540499 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D49E57C51D69BD72001A2D1F /* libruby.2.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libruby.2.3.0.dylib; path = UniversalRuby/libruby.2.3.0.dylib; sourceTree = "<group>"; };
+		D49E57C51D69BD72001A2D1F /* libruby.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libruby.3.0.dylib; path = UniversalRuby/libruby.3.0.dylib; sourceTree = "<group>"; };
 		D49E57C81D69BEF1001A2D1F /* Ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ruby.png; sourceTree = "<group>"; };
 		D4EF91831797495A00ACB192 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = UniversalRuby/lib; sourceTree = SOURCE_ROOT; };
 		D4EF918517974AFC00ACB192 /* Ruby.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Ruby.icns; sourceTree = SOURCE_ROOT; };
@@ -51,7 +51,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D425BB5D1796CF4000540499 /* Cocoa.framework in Frameworks */,
-				D49E57C61D69BD72001A2D1F /* libruby.2.3.0.dylib in Frameworks */,
+				D49E57C61D69BD72001A2D1F /* libruby.3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +99,7 @@
 			children = (
 				D4EF918E17976ABA00ACB192 /* Info.plist */,
 				D4EF91831797495A00ACB192 /* lib */,
-				D49E57C51D69BD72001A2D1F /* libruby.2.3.0.dylib */,
+				D49E57C51D69BD72001A2D1F /* libruby.3.0.dylib */,
 				D4EF918717974B5800ACB192 /* main.m */,
 				D4EF918817974B5800ACB192 /* main.rb */,
 				D4EF918517974AFC00ACB192 /* Ruby.icns */,
@@ -185,13 +185,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				HEADER_SEARCH_PATHS = (
 					UniversalRuby/include,
 					"UniversalRuby/include/$(arch)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				SDKROOT = "";
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
