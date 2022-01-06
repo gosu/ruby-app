@@ -1,8 +1,8 @@
-require 'gosu'
+require "gosu"
 
 # Some available libraries...
-require 'chipmunk'
-require 'texplay'
+require "chipmunk"
+require "texplay"
 
 class Window < Gosu::Window
   def initialize

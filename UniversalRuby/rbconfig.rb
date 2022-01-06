@@ -9,14 +9,14 @@ module RbConfig
     raise "ruby lib version (2.3.1) doesn't match executable version (#{RUBY_VERSION})"
 
   TOPDIR = File.dirname(__FILE__).chomp!("/lib")
-  DESTDIR = '' unless defined? DESTDIR
+  DESTDIR = "" unless defined? DESTDIR
   CONFIG = {}
   CONFIG["DESTDIR"] = DESTDIR
   CONFIG["MAJOR"] = "2"
   CONFIG["MINOR"] = "3"
   CONFIG["TEENY"] = "0"
   CONFIG["PATCHLEVEL"] = "112"
-  CONFIG["INSTALL"] = '/usr/bin/install -c'
+  CONFIG["INSTALL"] = "/usr/bin/install -c"
   CONFIG["EXEEXT"] = ""
   CONFIG["prefix"] = TOPDIR
   CONFIG["ruby_install_name"] = "$(RUBY_BASE_NAME)"
@@ -209,7 +209,7 @@ module RbConfig
   CONFIG["infodir"] = "$(datarootdir)/info"
   CONFIG["docdir"] = "$(datarootdir)/doc/$(PACKAGE)"
   CONFIG["oldincludedir"] = "/usr/include"
-  CONFIG["includedir"] = "$(SDKROOT)""$(prefix)/include"
+  CONFIG["includedir"] = "$(SDKROOT)" "$(prefix)/include"
   CONFIG["localstatedir"] = "$(prefix)/var"
   CONFIG["sharedstatedir"] = "$(prefix)/com"
   CONFIG["sysconfdir"] = "$(prefix)/etc"
@@ -231,20 +231,20 @@ module RbConfig
   CONFIG["archdir"] = "$(rubyarchdir)"
   CONFIG["topdir"] = File.dirname(__FILE__)
   MAKEFILE_CONFIG = {}
-  CONFIG.each{|k,v| MAKEFILE_CONFIG[k] = v.dup}
+  CONFIG.each { |k, v| MAKEFILE_CONFIG[k] = v.dup }
   def RbConfig::expand(val, config = CONFIG)
     newval = val.gsub(/\$\$|\$\(([^()]+)\)|\$\{([^{}]+)\}/) {
       var = $&
       if !(v = $1 || $2)
-	'$'
+        "$"
       elsif key = config[v = v[/\A[^:]+(?=(?::(.*?)=(.*))?\z)/]]
-	pat, sub = $1, $2
-	config[v] = false
-	config[v] = RbConfig::expand(key, config)
-	key = key.gsub(/#{Regexp.quote(pat)}(?=\s|\z)/n) {sub} if pat
-	key
+        pat, sub = $1, $2
+        config[v] = false
+        config[v] = RbConfig::expand(key, config)
+        key = key.gsub(/#{Regexp.quote(pat)}(?=\s|\z)/n) { sub } if pat
+        key
       else
-	var
+        var
       end
     }
     val.replace(newval) unless newval == val
@@ -262,4 +262,5 @@ module RbConfig
     )
   end
 end
+
 CROSS_COMPILING = nil unless defined? CROSS_COMPILING

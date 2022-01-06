@@ -1,19 +1,19 @@
-RVM_RUBY         = "ruby-2.3.8"
+RVM_RUBY = "ruby-2.3.8"
 INTERNAL_VERSION = "2.3.0"
-RUBY_DYLIB       = "libruby.#{INTERNAL_VERSION}.dylib"
-RUBY_DYLIB_ID    = "@executable_path/../Frameworks/#{RUBY_DYLIB}"
-TARGET_ROOT      = "UniversalRuby"
-SOURCE_ROOT      = "#{ENV['HOME']}/.rvm/rubies/#{RVM_RUBY}"
-GEM_ROOT         = "#{ENV['HOME']}/.rvm/gems/#{RVM_RUBY}/gems"
-LIB_KILLLIST     = %w(README irb rake* rdoc* *ubygems* readline* tcltk* tk* tcltklib* rss* *-darwin*)
-GEMS             = %w(gosu texplay chipmunk ashton opengl msgpack)
-GEMS_WITH_FLAGS  = "#{GEMS.join(' ')} --pre"
+RUBY_DYLIB = "libruby.#{INTERNAL_VERSION}.dylib"
+RUBY_DYLIB_ID = "@executable_path/../Frameworks/#{RUBY_DYLIB}"
+TARGET_ROOT = "UniversalRuby"
+SOURCE_ROOT = "#{ENV["HOME"]}/.rvm/rubies/#{RVM_RUBY}"
+GEM_ROOT = "#{ENV["HOME"]}/.rvm/gems/#{RVM_RUBY}/gems"
+LIB_KILLLIST = %w(README irb rake* rdoc* *ubygems* readline* tcltk* tk* tcltklib* rss* *-darwin*)
+GEMS = %w(gosu texplay chipmunk ashton opengl msgpack)
+GEMS_WITH_FLAGS = "#{GEMS.join(" ")} --pre"
 
 CURRENT_PLATFORM = `uname -m`.chomp
 
-def merge_lib source_file, target_file
+def merge_lib(source_file, target_file)
   sh "install_name_tool -change #{SOURCE_ROOT}/lib/#{RUBY_DYLIB} #{RUBY_DYLIB_ID} #{source_file}"
-  if File.exist? target_file then
+  if File.exist? target_file
     sh "lipo #{source_file} #{target_file} -create -output #{target_file}"
   else
     sh "cp #{source_file} #{target_file}"
@@ -21,13 +21,13 @@ def merge_lib source_file, target_file
 end
 
 task :rebuild_ruby_for_current_platform do
-  if File.directory? '/usr/local/opt/gmp/lib'
+  if File.directory? "/usr/local/opt/gmp/lib"
     raise "Please run `brew uninstall gmp --ignore-dependencies` to avoid it leaking into our portable Ruby."
   end
-  
+
   mkdir_p "#{TARGET_ROOT}/include"
   mkdir_p "#{TARGET_ROOT}/lib"
-  
+
   # Let RVM install the correct Ruby
   sh "env RVM_RUBY=#{RVM_RUBY} RVM_GEMS='#{GEMS_WITH_FLAGS}' " +
      "    bash #{TARGET_ROOT}/install_rvm_ruby.sh"
@@ -40,7 +40,7 @@ task :merge_current_platform_into_universal_ruby => :rebuild_ruby_for_current_pl
   sh "cp #{TARGET_ROOT}/rbconfig.rb #{TARGET_ROOT}/lib/rbconfig.rb"
   # Rename platform-specific folder so the Xcode project will find it
   sh "mv #{TARGET_ROOT}/include/*-darwin* #{TARGET_ROOT}/include/#{CURRENT_PLATFORM}"
-  
+
   # Copy Ruby libraries
   sh "cp -R #{SOURCE_ROOT}/lib/ruby/#{INTERNAL_VERSION}/* #{TARGET_ROOT}/lib"
   # Merge libruby with existing platforms
@@ -49,7 +49,7 @@ task :merge_current_platform_into_universal_ruby => :rebuild_ruby_for_current_pl
   target_file = "#{TARGET_ROOT}/#{RUBY_DYLIB}"
   sh "install_name_tool -id #{RUBY_DYLIB_ID} #{source_file}"
   merge_lib source_file, target_file
-  
+
   # Merge binary libraries
   Dir["#{SOURCE_ROOT}/lib/ruby/#{INTERNAL_VERSION}/*-darwin*/**/*.bundle"].each do |source_file|
     target_file = source_file.dup
@@ -59,7 +59,7 @@ task :merge_current_platform_into_universal_ruby => :rebuild_ruby_for_current_pl
     mkdir_p File.dirname(target_file)
     merge_lib source_file, target_file
   end
-  
+
   # Merge gems
   GEMS.each do |gem_name|
     gem_name = gem_name.split(" ").first # strip --pre flag
