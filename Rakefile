@@ -6,8 +6,8 @@ TARGET_ROOT = "UniversalRuby"
 SOURCE_ROOT = "#{ENV["HOME"]}/.rvm/rubies/#{RVM_RUBY}"
 GEM_ROOT = "#{ENV["HOME"]}/.rvm/gems/#{RVM_RUBY}/gems"
 LIB_KILLLIST = %w(README irb rake* rdoc* *ubygems* readline* tcltk* tk* tcltklib* rss* *-darwin*)
-GEMS = %w(gosu texplay chipmunk ashton opengl msgpack)
-GEMS_WITH_FLAGS = "#{GEMS.join(" ")} --pre"
+GEMS = %w(gosu chipmunk opengl msgpack)
+GEMS_WITH_FLAGS = "#{GEMS.join(" ")}"
 
 CURRENT_PLATFORM = `uname -m`.chomp
 
@@ -26,7 +26,7 @@ task :rebuild_ruby_for_current_platform do
 
   # Let RVM install the correct Ruby
   sh "env RVM_RUBY=#{RVM_RUBY} RVM_GEMS='#{GEMS_WITH_FLAGS}' " +
-     "    bash #{TARGET_ROOT}/install_rvm_ruby.sh"
+     "    bash #{TARGET_ROOT}/install_rvm_ruby_#{CURRENT_PLATFORM}.sh"
 end
 
 task :merge_current_platform_into_universal_ruby => :rebuild_ruby_for_current_platform do

@@ -191,6 +191,7 @@
 					"UniversalRuby/include/$(arch)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_CFLAGS = "-fdeclspec";
 				SDKROOT = macosx;
 			};
 			name = Release;

@@ -31,6 +31,9 @@ int main()
         rb_eval_string("$LOAD_PATH << Dir.pwd");
         rb_eval_string("$LOAD_PATH << $LOAD_PATH[0] + '/lib'");
         
+        // Require RbConfig so that DidYouMean doesn't stumble.
+        rb_eval_string("require 'rbconfig'");
+        
         // Let the application know it is being run from the Mac app wrapper.
         rb_eval_string("OSX_EXECUTABLE = true");
 

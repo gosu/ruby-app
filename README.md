@@ -7,6 +7,8 @@ It can probably be adapted to wrap applications or games written in other toolki
 The idea is that `Ruby.app` contains a full, universal Ruby installation.
 All you have to do is provide a `main.rb` file inside the `Ruby.app/Contents/Resources/` folder that starts your game/application.
 
+⚠️ This repository is broken right now. The bundled `gosu.bundle` has a dynamic dependency on SDL2 from homebrew that it shouldn't have.
+
 # Alternatives
 
 ## Why not RubyMotion?
@@ -25,14 +27,10 @@ This is also what [Platypus](http://sveinbjorn.org/platypus) does. However,
 
 # Build process
 
-tl;dr after many long nights: I have given up on cross-compiling Ruby and its quirky C extensions.
-Instead, I compile Ruby on two different Macs and merge the results with `lipo`.
-Note: Since binaries compiled on one version of macOS are not guaranteed to work on older releases, I recommend using the oldest version of macOS you can find to build the Ruby app.
-
 * Install rvm.
 * Optional: Update the Rakefile with the desired Ruby version and gems.
-* Run `rake` on an Intel Mac. This will install Ruby and all required gems via rvm, and then copy them into the `UniversalRuby` folder. Airdrop this folder to your ARM Mac.
-* Run `rake` on the ARM Mac. This will build and merge ARM binaries into the UniversalRuby folder.
+* Run `rake` on an ARM Mac. This will install Ruby and all required gems via rvm, and then copy them into the `UniversalRuby` folder.
+* Run `arch -x86_64 rake`. This will build and merge Intel binaries into the UniversalRuby folder.
 * Optional: If you have updated Ruby, be sure to manually update `rbconfig.rb` from your rvm-built Ruby (at least the version number should match).
 * You should now have a self-contained Ruby installation!
 

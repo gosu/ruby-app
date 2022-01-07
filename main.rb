@@ -2,7 +2,7 @@ require "gosu"
 
 # Some available libraries...
 require "chipmunk"
-require "texplay"
+require "opengl"
 
 class Window < Gosu::Window
   def initialize
@@ -14,15 +14,11 @@ class Window < Gosu::Window
 
   def draw
     angle = Math.sin(Gosu::milliseconds / 500.0) * 5
-    @image.draw_rot self.width / 2, self.height / 2, 0, angle
+    @image.draw_rot self.width / 2, self.height / 2, 0, angle, 0.5, 0.5, 0.5, 0.5
   end
 
   def update
     # ...
-  end
-
-  def needs_cursor?
-    true
   end
 end
 
