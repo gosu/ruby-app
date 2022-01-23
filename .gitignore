@@ -3,6 +3,7 @@
 # Intermdiate files
 /UniversalRuby/include/
 /UniversalRuby/lib/
+/UniversalRuby/libruby.?.?.dylib
 /UniversalRuby/libruby.?.?.?.dylib
 build
 /Ruby.app
